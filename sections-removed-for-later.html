@@ -1,0 +1,83 @@
+<!-- ============================================================
+     REMOVED CONTENT — Mycelial Estate index.html
+
+     1. Shop Strip (Beyond Fresh Mushrooms / Full Estate Shop)
+     2. Footer Shop links (Grain Spawn, Substrate Kits, Liquid Cultures, CSA Share)
+
+     Saved for quick re-addition when ready to sell products
+     beyond the three oyster varieties (grain spawn, substrate
+     kits, CSA share).
+
+     To restore:
+     - Shop Strip: copy the CSS block below into the <style> tag
+       in index.html, then paste the HTML section where indicated.
+     - Footer links: paste the <li> items back into the Shop column
+       <ul class="footer-links"> in the footer.
+     ============================================================ -->
+
+<!-- ─── SHOP STRIP ───────────────────────────────────────────── -->
+<!-- Original position: after Coming Soon section, before JOURNAL
+
+     Also add this responsive rule inside @media (max-width: 960px):
+       .shop-strip { padding: 4rem 1.5rem; }
+-->
+
+<!-- CSS to add back into <style> -->
+<style>
+    .shop-strip { padding: 6rem 3.5rem; background: var(--bark); }
+    .shop-strip-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .shop-strip-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(250,248,243,0.4); margin-bottom: 0.6rem; }
+    .shop-strip-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--cream); }
+    .shop-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .shop-card { background: rgba(255,255,255,0.05); padding: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem; border: 1px solid rgba(255,255,255,0.07); }
+    .shop-card-tag { font-size: 0.59rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); }
+    .shop-card-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--cream); line-height: 1.15; }
+    .shop-card-desc { font-size: 0.81rem; color: rgba(250,248,243,0.52); line-height: 1.8; flex: 1; }
+    .shop-card-price { font-size: 1rem; font-weight: 500; color: var(--cream); }
+    .shop-card-price span { font-size: 0.68rem; color: rgba(250,248,243,0.42); margin-left: 0.2rem; }
+    .btn-order-light { margin-top: 0.4rem; padding: 0.65rem 1.5rem; background: var(--gold); color: var(--bark); font-size: 0.64rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.25s; }
+    .btn-order-light:hover { background: var(--gold-light); }
+</style>
+
+<!-- HTML -->
+<section class="shop-strip">
+  <div class="shop-strip-header reveal">
+    <div>
+      <p class="shop-strip-label">Beyond Fresh Mushrooms</p>
+      <h2 class="shop-strip-title">The Full Estate Shop</h2>
+    </div>
+<a class="btn-order-light" href="shop.html">Browse All</a>
+  </div>
+  <div class="shop-cards">
+    <div class="shop-card reveal">
+      <span class="shop-card-tag">Cultivation</span>
+      <h3 class="shop-card-title">Grain Spawn Bundles</h3>
+      <p class="shop-card-desc">Lab-prepared rye grain spawn, inoculated in sterile conditions and tested on our own farm. Ships same-week with cold packs.</p>
+      <p class="shop-card-price">From $18 <span>/ quart jar</span></p>
+<a class="btn-order-light" href="grain-spawn.html">Browse Spawn</a>
+    </div>
+    <div class="shop-card reveal reveal-delay-2">
+      <span class="shop-card-tag">Substrate</span>
+      <h3 class="shop-card-title">Straw Block Kits</h3>
+      <p class="shop-card-desc">Pasteurized straw and cardboard blocks, hydrated and ready to inoculate. A regenerative, low-waste substrate. 5 lb and 10 lb sizes available.</p>
+      <p class="shop-card-price">From $24 <span>/ block</span></p>
+<a class="btn-order-light" href="substrate-kits.html">Browse Blocks</a>
+    </div>
+    <div class="shop-card reveal reveal-delay-3">
+      <span class="shop-card-tag">Fresh Harvest</span>
+      <h3 class="shop-card-title">Weekly CSA Share</h3>
+      <p class="shop-card-desc">A rotating selection of whatever peaked that week. Shipped overnight or local pickup Thursday mornings in Indiana.</p>
+      <p class="shop-card-price">From $35 <span>/ week</span></p>
+<a class="btn-order-light" href="csa-share.html">Join the CSA</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER SHOP LINKS ──────────────────────────────────── -->
+<!-- Original position: inside the Shop column <ul class="footer-links">
+     in the footer, after <li><a href="fresh-harvest.html">Fresh Harvest</a></li> -->
+
+<li><a href="grain-spawn.html">Grain Spawn</a></li>
+<li><a href="substrate-kits.html">Substrate Kits</a></li>
+<li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+<li><a href="csa-share.html">CSA Share</a></li>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Cultures — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:     #FAF8F3;
+      --cream-mid: #F0EDE4;
+      --sand:      #E4DDD0;
+      --bark:      #3A2A1A;
+      --bark-mid:  #6B5240;
+      --muted:     #9A8E80;
+      --gold:      #B8942A;
+      --gold-light:#D4AA4A;
+      --text:      #2A1F14;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3.5rem;
+      background: rgba(250,248,243,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bark); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.71rem; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--bark); }
+    .product-hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      background: var(--cream);
+      overflow: hidden;
+    }
+    .product-img-col {
+      height: 90vh; overflow: hidden;
+      background: var(--cream-mid);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-img-col .img-placeholder {
+      width: 70%; aspect-ratio: 1/1;
+      background: var(--sand);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--muted); text-align: center; padding: 2rem;
+    }
+    .product-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 3rem;
+    }
+    .product-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--bark);
+      margin-bottom: 0.4rem;
+    }
+    .product-latin {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .product-desc {
+      font-size: 0.95rem;
+      color: var(--bark-mid);
+      line-height: 1.9;
+      max-width: 42ch;
+      margin-bottom: 2rem;
+    }
+    .product-attrs {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+    }
+    .attr-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--sand);
+      font-size: 0.74rem;
+    }
+    .attr-label { letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .attr-val { color: var(--bark); font-weight: 400; text-align: right; }
+    .product-pricing {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--sand);
+    }
+    .product-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--bark);
+    }
+    .product-price small {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-left: 0.3rem;
+    }
+    .btn-cart {
+      padding: 1rem 2.5rem;
+      background: var(--bark);
+      color: var(--cream);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background 0.3s;
+    }
+    .btn-cart:hover { background: var(--bark-mid); }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 1.5rem;
+    }
+    .section-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .details-section {
+      padding: 5rem 3.5rem;
+      background: var(--cream-mid);
+    }
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .detail-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      border: 1px solid var(--sand);
+    }
+    .detail-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 0.8rem;
+    }
+    .detail-card p {
+      font-size: 0.85rem;
+      color: var(--bark-mid);
+      line-height: 1.85;
+    }
+    .strains-section {
+      padding: 5rem 3.5rem;
+      background: var(--cream);
+    }
+    .strains-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--sand);
+    }
+    .strain-card {
+      background: var(--cream);
+      padding: 2rem;
+    }
+    .strain-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 0.3rem;
+    }
+    .strain-card-latin {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .strain-card-desc {
+      font-size: 0.78rem;
+      color: var(--bark-mid);
+      line-height: 1.8;
+    }
+    .strain-card-price {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--bark);
+      margin-top: 1rem;
+    }
+    .faq-section {
+      padding: 5rem 3.5rem;
+      background: var(--cream-mid);
+    }
+    .faq-list { max-width: 700px; }
+    .faq-item {
+      border-bottom: 1px solid var(--sand);
+      padding: 1.2rem 0;
+    }
+    .faq-q {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--bark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-q span { font-size: 1rem; color: var(--gold); }
+    .faq-a {
+      font-size: 0.82rem;
+      color: var(--bark-mid);
+      line-height: 1.8;
+      margin-top: 0.6rem;
+      display: none;
+    }
+    .faq-a.open { display: block; }
+    .related-section {
+      padding: 5rem 3.5rem;
+      background: var(--cream);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--sand);
+    }
+    .related-card {
+      background: var(--cream);
+      padding: 2rem;
+    }
+    .related-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 0.4rem;
+    }
+    .related-card-name a { color: var(--bark); text-decoration: none; }
+    .related-card-name a:hover { color: var(--gold); }
+    .related-card-latin {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .related-card-desc {
+      font-size: 0.78rem;
+      color: var(--bark-mid);
+      line-height: 1.8;
+    }
+    footer {
+      padding: 5rem 3.5rem 3rem;
+      background: var(--cream-mid);
+      border-top: 1px solid var(--sand);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 0.75rem;
+    }
+    .footer-tagline {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 28ch;
+    }
+    .footer-col-title {
+      font-size: 0.59rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links a {
+      font-size: 0.81rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--bark); }
+    .footer-bottom {
+      grid-column: 1 / -1;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); }
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .product-hero { grid-template-columns: 1fr; min-height: auto; }
+      .product-img-col { height: 55vw; }
+      .product-text-col { padding: 3rem 1.5rem; }
+      .details-grid { grid-template-columns: 1fr; }
+      .strains-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .details-section, .strains-section, .faq-section, .related-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<section class="product-hero">
+  <div class="product-img-col">
+    <div class="img-placeholder">Sterile liquid culture · microscope verified</div>
+  </div>
+  <div class="product-text-col">
+    <p class="product-eyebrow">Cultures — Liquid Mycelium</p>
+    <h1 class="product-name">Liquid<br/>Cultures</h1>
+    <p class="product-latin">Sterile mycelium suspension in nutrient media</p>
+    <p class="product-desc">Pure, microscope-verified liquid cultures prepared in sterile nutrient media. Each syringe contains actively growing mycelium from our master culture library — ideal for agar streak plates, grain inoculation, or expanding into larger liquid culture volumes.</p>
+    <div class="product-attrs">
+      <div class="attr-row"><span class="attr-label">Media</span><span class="attr-val">Sterile 2% Malt Extract + Peptone</span></div>
+      <div class="attr-row"><span class="attr-label">Volume</span><span class="attr-val">10 mL Luer-Lok syringe</span></div>
+      <div class="attr-row"><span class="attr-label">Testing</span><span class="attr-val">Microscope + Agar Plate Verified</span></div>
+      <div class="attr-row"><span class="attr-label">Storage</span><span class="attr-val">Refrigerate · Use within 6 months</span></div>
+      <div class="attr-row"><span class="attr-label">Needle</span><span class="attr-val">16-gauge blunt tip (included)</span></div>
+    </div>
+    <div class="product-pricing">
+      <span class="product-price">$15 <small>/ 10 mL syringe</small></span>
+      <button class="btn-cart" onclick="addToCart({name:'Liquid Culture',price:15,unit:'10 mL syringe',url:'liquid-cultures.html'})">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<section class="details-section">
+  <p class="section-sub">Quality &amp; Protocol</p>
+  <h2 class="section-heading">Lab-Prepared, Double-Verified</h2>
+  <div class="details-grid">
+    <div class="detail-card">
+      <h3 class="detail-card-title">Master Culture Library</h3>
+      <p>Every liquid culture originates from a master culture plate maintained in our culture library. Master cultures are stored on slants at 40 °F and refreshed every 90 days to maintain genetic vigor. No serial transfers — no genetic drift.</p>
+    </div>
+    <div class="detail-card">
+      <h3 class="detail-card-title">Sterile Media Preparation</h3>
+      <p>Our liquid culture media uses organic malt extract and peptone dissolved in distilled water, sterilized at 15 PSI for 30 minutes. Media is cooled, pH-adjusted to 5.5, and inoculated under laminar flow. Each batch is visually clear before use.</p>
+    </div>
+    <div class="detail-card">
+      <h3 class="detail-card-title">Microscope Verification</h3>
+      <p>Before any syringe leaves the lab, a sample is examined under 400x magnification. We check for typical hyphal morphology, clamp connections, and the complete absence of bacterial rods, yeast budding, or sporulating molds.</p>
+    </div>
+    <div class="detail-card">
+      <h3 class="detail-card-title">Agar Plate Confirmation</h3>
+      <p>A parallel sample is streaked onto malt extract agar and incubated for 7 days. Only syringes that produce clean, characteristic growth — no bacterial or fungal contaminants — are released for sale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="strains-section">
+  <p class="section-sub">Available Strains</p>
+  <h2 class="section-heading">Choose Your Culture</h2>
+  <div class="strains-grid">
+    <div class="strain-card">
+      <h3 class="strain-card-name">Blue Oyster</h3>
+      <p class="strain-card-latin">Pleurotus columbinus</p>
+      <p class="strain-card-desc">Fast-growing, aggressive colonizer. Excellent for beginners learning agar work and grain inoculation.</p>
+      <p class="strain-card-price">$15 / syringe</p>
+    </div>
+    <div class="strain-card">
+      <h3 class="strain-card-name">Golden Oyster</h3>
+      <p class="strain-card-latin">Pleurotus citrinopileatus</p>
+      <p class="strain-card-desc">Vibrant yellow strain with moderate growth rate. Responds well to LC-to-LC expansion for bulk inoculation.</p>
+      <p class="strain-card-price">$15 / syringe</p>
+    </div>
+    <div class="strain-card">
+      <h3 class="strain-card-name">Black Pearl Oyster</h3>
+      <p class="strain-card-latin">Pleurotus ostreatus var.</p>
+      <p class="strain-card-desc">Slower-growing but exceptionally dense mycelium. Produces robust cultures ideal for long-term storage.</p>
+      <p class="strain-card-price">$17 / syringe</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <p class="section-sub">Questions</p>
+  <h2 class="section-heading">Liquid Culture FAQs</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">How many grains can one syringe inoculate? <span>+</span></div>
+      <div class="faq-a">A 10 mL syringe will inoculate 3–5 quart jars of sterilized rye grain. Inject 1–2 mL per jar through the filter patch or an injection port. Shake immediately to distribute the culture.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I expand the culture to make more LC? <span>+</span></div>
+      <div class="faq-a">Yes — inject 1 mL into a sterile jar containing 200–300 mL of prepared LC media. Use a stir plate at low speed for 5–7 days. Maintain sterile technique throughout to avoid contamination.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How should I store the syringe? <span>+</span></div>
+      <div class="faq-a">Refrigerate at 35–45 °F. Use within 6 months for best viability. Allow the syringe to warm to room temperature for 2 hours before use. Do not freeze.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I use this on agar plates? <span>+</span></div>
+      <div class="faq-a">Absolutely — place 1–2 drops onto the center of a malt extract agar plate and spread with a sterile loop. Visible growth typically appears within 3–5 days at 75 °F.</div>
+    </div>
+  </div>
+</section>
+
+<section class="related-section">
+  <p class="section-sub">Also Available</p>
+  <h2 class="section-heading">Shop More Categories</h2>
+  <div class="related-grid">
+    <div class="related-card">
+      <h3 class="related-card-name"><a href="grain-spawn.html">Grain Spawn Bundles</a></h3>
+      <p class="related-card-latin">Rye grain · sterile inoculation</p>
+      <p class="related-card-desc">Pre-colonized grain spawn ready to bulk. Skip the LC step and go straight to substrate.</p>
+    </div>
+    <div class="related-card">
+      <h3 class="related-card-name"><a href="substrate-kits.html">Straw Block Kits</a></h3>
+      <p class="related-card-latin">Pasteurized wheat straw</p>
+      <p class="related-card-desc">Hydrated, pasteurized straw blocks ready to inoculate with your grain spawn or LC.</p>
+    </div>
+    <div class="related-card">
+      <h3 class="related-card-name"><a href="shop.html">Full Estate Shop</a></h3>
+      <p class="related-card-latin">Browse all products</p>
+      <p class="related-card-desc">Fresh harvest, substrate, spawn, and cultures — everything from the estate.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="grain-spawn.html">Grain Spawn</a></li>
+      <li><a href="substrate-kits.html">Substrate Kits</a></li>
+      <li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+      <li><a href="csa-share.html">CSA Share</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#our-methods">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(item => {
+    item.addEventListener('click', () => {
+      const answer = item.nextElementSibling;
+      answer.classList.toggle('open');
+      item.querySelector('span').textContent = answer.classList.contains('open') ? '−' : '+';
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why We Grow on Straw — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #FAF8F3; --cream-mid: #F0EDE4; --sand: #E4DDD0; --bark: #3A2A1A; --bark-mid: #6B5240; --muted: #9A8E80; --gold: #B8942A; --gold-light: #D4AA4A; --text: #2A1F14; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3.5rem; background: rgba(250,248,243,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--sand); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bark); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.71rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--bark); }
+
+    .article { padding-top: 72px; max-width: 720px; margin: 0 auto; padding-bottom: 5rem; }
+    .article-header { padding: 5rem 2rem 3rem; text-align: center; }
+    .article-tag { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1.05; color: var(--bark); margin-bottom: 0.8rem; }
+    .article-meta { font-size: 0.72rem; color: var(--muted); }
+    .article-body { padding: 0 2rem; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem; }
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--bark); margin-top: 2rem; margin-bottom: 0.6rem; }
+    .article-body p { font-size: 0.95rem; color: var(--bark-mid); line-height: 1.9; margin-bottom: 1.2rem; }
+    .article-body hr { border: none; border-top: 1px solid var(--sand); margin: 2rem 0; }
+    .article-body .pullquote { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; color: var(--bark); padding: 1.5rem 2rem; border-left: 3px solid var(--gold); margin: 1.5rem 0; background: var(--cream-mid); }
+    .article-back { display: inline-flex; align-items: center; gap: 0.5rem; margin: 2rem 2rem 0; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .article-back:hover { color: var(--gold); }
+
+    footer { padding: 5rem 3.5rem 3rem; background: var(--cream-mid); border-top: 1px solid var(--sand); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--bark); margin-bottom: 0.75rem; }
+    .footer-tagline { font-size: 0.81rem; color: var(--muted); line-height: 1.8; max-width: 28ch; }
+    .footer-col-title { font-size: 0.59rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links a { font-size: 0.81rem; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .footer-links a:hover { color: var(--bark); }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 2.5rem; border-top: 1px solid var(--sand); display: flex; justify-content: space-between; }
+    .footer-copy { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); }
+
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .article-header { padding: 4rem 1.5rem 2rem; }
+      .article-body { padding: 0 1.5rem; }
+      .article-back { margin: 1.5rem; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<a class="article-back" href="journal.html">← Back to Journal</a>
+
+<article class="article">
+  <header class="article-header">
+    <p class="article-tag">Substrate · Research</p>
+    <h1 class="article-title">Why We Grow on Straw: A Two-Year Substrate Trial</h1>
+    <p class="article-meta">June 2026 · 8 min read</p>
+  </header>
+  <div class="article-body">
+
+    <p>When we started Mycelial Estate, every established source told us the same thing: you need hardwood sawdust to grow serious oyster mushrooms. Supplemented oak or poplar sawdust was the industry standard — proven, predictable, and widely documented. But sawdust comes from timber, and we wanted to build something that didn't depend on cutting trees.</p>
+
+    <p>Straw, on the other hand, is a byproduct. Every year, grain farms across Indiana produce far more wheat straw than they can use. It's cheap, abundant, and renewable on an annual cycle. The question was whether it could match sawdust in yield, consistency, and mushroom quality.</p>
+
+    <p>This article summarizes what we learned from two years of side-by-side trials — 12 substrate formulations, over 200 blocks, and thousands of pounds of mushrooms.</p>
+
+    <hr />
+
+    <h2>The Trial Design</h2>
+
+    <p>We tested four base substrate categories, each with three variations: pure wheat straw, straw blended with reclaimed cardboard (25%, 50%, 75%), supplemented oak sawdust (industry control), and a straw + sawdust hybrid. All blocks used Blue Oyster (Pleurotus columbinus) grain spawn at a 7% spawn rate. Bags were randomized across shelf positions in the same fruiting chamber to control for microclimate variation.</p>
+
+    <p>For each block we recorded: days to full colonization, days to first pin, first flush weight, second flush weight, total yield, contamination rate, and subjective quality scores (cap color, cluster density, stem length, flavor intensity) on a 1–5 scale.</p>
+
+    <div class="pullquote">The best-performing formulation wasn't pure straw or pure sawdust — it was a 50/50 blend of straw and reclaimed cardboard.</div>
+
+    <h2>Key Findings</h2>
+
+    <h3>Yield</h3>
+    <p>The 50% straw / 50% cardboard blend produced an average total yield of 2.8 lbs per 5 lb block across three flushes — within 6% of the supplemented sawdust control (3.0 lbs). Pure straw averaged 2.4 lbs. The straw-sawdust hybrid fell in between at 2.6 lbs.</p>
+
+    <h3>Colonization Speed</h3>
+    <p>Straw-only blocks colonized fastest — averaging 12 days to full white. Cardboard blends were slightly slower (14 days for the 50/50 blend), likely because cardboard holds less available moisture than straw. Sawdust blocks took 16 days, consistent with published data.</p>
+
+    <h3>Contamination Rates</h3>
+    <p>All substrate types had contamination rates below 5% when properly pasteurized. The 50/50 straw-cardboard blend was the most forgiving — zero losses across 40 blocks during the main trial. We attribute this to the higher surface pH of cardboard, which inhibits Trichoderma germination.</p>
+
+    <h3>Sensory Quality</h3>
+    <p>Blind taste tests (n=12 kitchen staff) found no statistically significant difference between straw-grown and sawdust-grown Blue Oysters. The 50/50 blend scored highest for cap color intensity, which was an unexpected but welcome result.</p>
+
+    <hr />
+
+    <h2>Why We Chose Straw + Cardboard</h2>
+
+    <p>The numbers told us that the 50/50 straw and cardboard blend was nearly as productive as sawdust — close enough that the environmental and cost advantages made the choice clear:</p>
+
+    <p><strong>Cost.</strong> Straw costs us $0.08 per lb delivered from local farms. Cardboard is free — reclaimed from local businesses that would otherwise pay to have it hauled away. Supplemented oak sawdust runs $0.35–0.50 per lb delivered.</p>
+
+    <p><strong>Sustainability.</strong> Every 5 lb block diverts approximately 1.5 lbs of cardboard from landfill. Over our current production volume, that's several hundred pounds of waste diverted per month. And spent straw-cardboard blocks compost faster than sawdust blocks — fully breaking down in 8–12 weeks versus 16–20 for sawdust.</p>
+
+    <p><strong>Scalability.</strong> Straw is a seasonal input — harvested once per year and easily stored in a dry barn. Sawdust supply depends on sawmill production, which can be inconsistent. For a small farm, straw offers more control over the supply chain.</p>
+
+    <div class="pullquote">"Straw is a byproduct. Every year, grain farms across Indiana produce far more wheat straw than they can use."</div>
+
+    <h2>What We'd Do Differently</h2>
+
+    <p>If we ran this trial again, we'd add more replicate blocks — our 10 blocks per formulation gave us reasonable confidence but a larger sample would strengthen the conclusions. We'd also run the trial across multiple oyster species. Golden Oyster and Black Pearl may respond differently to straw than Blue Oyster.</p>
+
+    <p>We also learned that straw quality varies significantly by farm. Straw that has been rain-washed before baling loses structural integrity and compacts too densely in filter bags. We now source only from farms that store straw under cover.</p>
+
+    <hr />
+
+    <h2>Bottom Line</h2>
+
+    <p>Straw and cardboard won't replace supplemented sawdust for every cultivator. But for a small-scale farm that values regeneration over raw throughput, the combination works. It's cheaper, more sustainable, and — in our experience — produces mushrooms that are indistinguishable from the sawdust-grown standard.</p>
+
+    <p>If you're a home cultivator experimenting with substrate, we'd encourage you to try a straw-cardboard blend. Start with a 50/50 ratio by volume, pasteurize at 160 °F for 90 minutes, and inoculate at a 7–10% spawn rate. Let us know how it goes.</p>
+
+  </div>
+</article>
+
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="grain-spawn.html">Grain Spawn</a></li>
+      <li><a href="substrate-kits.html">Substrate Kits</a></li>
+      <li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+      <li><a href="csa-share.html">CSA Share</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="our-methods.html">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+
+
+

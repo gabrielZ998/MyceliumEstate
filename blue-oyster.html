@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Oyster — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── PAGE-SPECIFIC STYLES (Blue Oyster product page) ── */
+    .product-page {
+      padding-top: 72px; /* nav height */
+    }
+
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--cream-mid);
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .product-badge {
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      background: var(--bark);
+      color: var(--cream);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+    }
+
+    .product-info p.product-tag {
+      font-size: 0.71rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--bark);
+      line-height: 1.05;
+    }
+    .product-latin {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .product-desc {
+      max-width: 50ch;
+      color: var(--bark-mid);
+      font-size: 1rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--bark);
+    }
+    .product-price span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 400;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .size-select {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2.4rem;
+    }
+    .size-option {
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--sand);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--bark-mid);
+      background: var(--cream);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .size-option.selected,
+    .size-option:hover {
+      border-color: var(--bark);
+      color: var(--bark);
+    }
+
+    .btn-cart {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.4rem;
+      background: var(--bark);
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 320px;
+      transition: background 0.3s;
+    }
+    .btn-cart:hover { background: var(--bark-mid); }
+
+    .product-meta {
+      margin-top: 2.4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .product-meta-item {
+      font-size: 0.82rem;
+      color: var(--bark-mid);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .product-meta-item strong {
+      color: var(--bark);
+      font-weight: 500;
+      min-width: 110px;
+    }
+
+    /* ── EDUCATION SECTION ── */
+    .product-edu {
+      background: var(--cream-mid);
+      padding: 5rem 3rem;
+    }
+    .product-edu-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .product-edu-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .edu-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--bark);
+      margin-bottom: 0.6rem;
+    }
+    .edu-card p {
+      font-size: 0.88rem;
+      color: var(--bark-mid);
+    }
+
+    /* ── FAQ SECTION ── */
+    .product-faq {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+    .product-faq-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 2.4rem;
+      text-align: center;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--sand);
+      padding: 1.4rem 0;
+    }
+    .faq-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--bark-mid);
+    }
+
+    @media (max-width: 800px) {
+      .product-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .product-edu, .product-faq { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<div class="product-page">
+
+  <!-- PRODUCT HERO -->
+  <section class="product-hero">
+    <div class="product-img-wrap">
+      <img src="assets/images/BlueO.png" alt="Blue Oyster Mushroom" loading="lazy" />
+      <span class="product-badge">Available Now</span>
+    </div>
+
+    <div class="product-info">
+      <p class="product-tag">Gourmet Oyster Variety</p>
+      <h1 class="product-name">Blue Oyster</h1>
+      <p class="product-latin">Pleurotus ostreatus var. columbinus</p>
+
+      <p class="product-desc">
+        Striking slate-blue caps fading to cream at the edges, with a firm, meaty texture
+        and a mild, savory flavor. Cold-tolerant and fast-fruiting, our Blue Oyster clusters
+        are harvested at peak freshness and never held in cold storage longer than a day
+        before pickup or delivery.
+      </p>
+
+      <div class="product-price-row">
+        <p class="product-price">$14 <span>/ 8 oz</span></p>
+      </div>
+
+      <div class="size-select">
+        <div class="size-option selected" data-price="14" data-unit="8 oz">8 oz</div>
+        <div class="size-option" data-price="24" data-unit="1 lb">1 lb</div>
+        <div class="size-option" data-price="42" data-unit="2 lb">2 lb</div>
+      </div>
+
+      <button class="btn-cart" id="addToCartBtn">Add to Cart</button>
+
+      <div class="product-meta">
+        <p class="product-meta-item"><strong>Availability</strong> In season now</p>
+        <p class="product-meta-item"><strong>Fulfillment</strong> Local pickup &amp; local delivery</p>
+        <p class="product-meta-item"><strong>Shelf Life</strong> 7–10 days refrigerated</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="product-edu">
+    <div class="product-edu-inner">
+      <h2 class="product-edu-title">Why Blue Oyster</h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h4>Flavor &amp; Texture</h4>
+          <p>A mild, slightly briny flavor with a firm bite that holds up well to high-heat cooking like searing and grilling.</p>
+        </div>
+        <div class="edu-card">
+          <h4>Cultivation Method</h4>
+          <p>Grown on pasteurized straw substrate in climate-controlled fruiting chambers, harvested by hand at peak maturity.</p>
+        </div>
+        <div class="edu-card">
+          <h4>Best Uses</h4>
+          <p>Excellent sautéed in butter, blackened, or used as a meat substitute in tacos and stir-fry dishes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="product-faq">
+    <h2 class="product-faq-title">Questions</h2>
+
+    <div class="faq-item">
+      <h4>How fresh are the mushrooms when I receive them?</h4>
+      <p>Every order is harvested within 24 hours of pickup or delivery — we don't hold inventory in cold storage.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you ship Blue Oyster mushrooms?</h4>
+      <p>Not yet. Phase 1 is local pickup and local delivery only. Shipping is planned for a future phase.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How should I store them at home?</h4>
+      <p>Keep refrigerated in a paper bag (not plastic) to preserve texture. Best used within 7–10 days.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I order in bulk for a restaurant?</h4>
+      <p>Yes — visit our <a href="wholesale.html">Wholesale page</a> for bulk pricing and ordering details.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="grain-spawn.html">Grain Spawn</a></li>
+      <li><a href="substrate-kits.html">Substrate Kits</a></li>
+      <li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+      <li><a href="csa-share.html">CSA Share</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#our-methods">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script>
+  const boSizes = document.querySelectorAll('.size-option');
+  const boPrice = document.querySelector('.product-price');
+  const boBtn = document.getElementById('addToCartBtn');
+  const boBase = {name:'Blue Oyster',url:'blue-oyster.html',image:'assets/images/BlueO.png'};
+  function boUpdate() {
+    const sel = document.querySelector('.size-option.selected');
+    const p = parseInt(sel.dataset.price), u = sel.dataset.unit;
+    boPrice.innerHTML = '$' + p + ' <span>/ ' + u + '</span>';
+    boBtn.onclick = function(){ addToCart(Object.assign({}, boBase, {price:p, unit:u})); };
+  }
+  boSizes.forEach(s => s.addEventListener('click', function(){
+    boSizes.forEach(x => x.classList.remove('selected'));
+    this.classList.add('selected'); boUpdate();
+  }));
+  boUpdate();
+</script>
+<script src="js/cart.js"></script>
+</body>
+</html>

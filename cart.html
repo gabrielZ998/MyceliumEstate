@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #FAF8F3; --cream-mid: #F0EDE4; --sand: #E4DDD0; --bark: #3A2A1A; --bark-mid: #6B5240; --muted: #9A8E80; --gold: #B8942A; --gold-light: #D4AA4A; --text: #2A1F14; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+
+    .cart-page { padding-top: 72px; max-width: 900px; margin: 0 auto; min-height: 70vh; padding-bottom: 5rem; }
+    .cart-header { padding: 4rem 2rem 2rem; }
+    .cart-eyebrow { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .cart-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--bark); }
+
+    #cart-empty { padding: 4rem 2rem; text-align: center; }
+    #cart-empty p { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
+    #cart-empty .empty-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .btn-shop { display: inline-block; padding: 0.9rem 2rem; background: var(--bark); color: var(--cream); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: background 0.3s; }
+    .btn-shop:hover { background: var(--bark-mid); }
+
+    #cart-summary { display: none; }
+    .cart-head { display: grid; grid-template-columns: 3fr 1fr 1fr 1fr 40px; gap: 1rem; padding: 0 2rem 0.75rem; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--sand); }
+    .cart-body { padding: 0 2rem; }
+
+    .cart-row { display: grid; grid-template-columns: 3fr 1fr 1fr 1fr 40px; gap: 1rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--sand); }
+    .cart-row-info { display: flex; align-items: center; gap: 1rem; }
+    .cart-row-img { width: 56px; height: 56px; object-fit: cover; border-radius: 4px; background: var(--sand); }
+    .cart-row-placeholder { width: 56px; height: 56px; border-radius: 4px; background: var(--sand); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--muted); flex-shrink: 0; }
+    .cart-row-name { font-size: 0.9rem; font-weight: 500; color: var(--bark); text-decoration: none; }
+    .cart-row-name:hover { color: var(--gold); }
+    .cart-row-unit { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+
+    .cart-row-price { font-size: 0.85rem; color: var(--bark-mid); }
+    .cart-row-qty { display: flex; align-items: center; gap: 0.4rem; }
+    .qty-btn { width: 28px; height: 28px; border: 1px solid var(--sand); background: var(--cream); color: var(--bark-mid); font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; border-radius: 0; }
+    .qty-btn:hover { border-color: var(--bark-mid); }
+    .qty-val { font-size: 0.85rem; color: var(--bark); min-width: 1.2rem; text-align: center; }
+    .cart-row-total { font-size: 0.85rem; font-weight: 500; color: var(--bark); }
+    .cart-row-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; padding: 0.2rem; transition: color 0.2s; }
+    .cart-row-remove:hover { color: var(--bark); }
+
+    .cart-footer { padding: 1.5rem 2rem 0; display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; border-top: 1px solid var(--sand); margin: 0 2rem; }
+    .cart-footer-row { display: flex; justify-content: space-between; width: 260px; font-size: 0.85rem; color: var(--bark-mid); }
+    .cart-footer-row.total { font-size: 1.05rem; font-weight: 500; color: var(--bark); padding-top: 0.75rem; border-top: 1px solid var(--sand); }
+    .btn-checkout { padding: 1rem 2.5rem; background: var(--bark); color: var(--cream); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s; }
+    .btn-checkout:hover { background: var(--bark-mid); }
+    .btn-clear { background: none; border: none; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); cursor: pointer; padding: 0; text-decoration: underline; transition: color 0.2s; }
+    .btn-clear:hover { color: var(--bark); }
+
+    @media (max-width: 960px) {
+      .cart-head { grid-template-columns: 2fr 1fr 1fr 40px; }
+      .cart-head span:nth-child(2) { display: none; }
+      .cart-row { grid-template-columns: 2fr 1fr 1fr 40px; }
+      .cart-row-price { display: none; }
+      .cart-footer { margin: 0 1.5rem; }
+      .cart-body { padding: 0 1.5rem; }
+      .cart-header { padding: 3rem 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<div class="cart-page">
+  <div class="cart-header">
+    <p class="cart-eyebrow">Your Selection</p>
+    <h1 class="cart-title">Shopping Cart</h1>
+  </div>
+
+  <div id="cart-empty">
+    <p>Your cart is empty.</p>
+    <p class="empty-sub">Browse our current harvest and add something to get started.</p>
+    <a class="btn-shop" href="fresh-harvest.html">Browse Fresh Harvest</a>
+  </div>
+
+  <div id="cart-summary">
+    <div class="cart-head">
+      <span>Product</span>
+      <span>Price</span>
+      <span>Quantity</span>
+      <span>Total</span>
+      <span></span>
+    </div>
+    <div class="cart-body" id="cart-items"></div>
+
+    <div class="cart-footer">
+      <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+      <div class="cart-footer-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <a class="btn-checkout" href="#">Proceed to Checkout</a>
+      <p style="font-size:0.68rem;color:var(--muted);margin-top:-0.5rem;">Online checkout coming soon — order via pickup or local delivery for now.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="blue-oyster.html">Blue Oyster</a></li>
+      <li><a href="golden-oyster.html">Golden Oyster</a></li>
+      <li><a href="black-pearl-oyster.html">Black Pearl Oyster</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="our-methods.html">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+

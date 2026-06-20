@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .page { padding-top: 72px; }
+
+    .page-hero {
+      padding: 6rem 3.5rem 5rem;
+      background: linear-gradient(135deg, #FAF8F3 0%, #EDE7DA 100%);
+    }
+    .page-hero-inner { max-width: 1300px; margin: 0 auto; }
+    .page-eyebrow {
+      font-size: 0.71rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .page-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.0;
+      color: var(--bark); margin-bottom: 1.5rem;
+    }
+    .page-headline em { font-style: italic; color: var(--gold); }
+    .page-sub {
+      max-width: 56ch; font-size: 1.05rem; color: var(--bark-mid); line-height: 1.85;
+    }
+
+    .shop-grid-section { padding: 5rem 3.5rem 6rem; background: var(--cream); }
+    .shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--sand); max-width: 1300px; margin: 0 auto; }
+    .shop-card {
+      background: var(--cream); padding: 2.5rem;
+      display: flex; flex-direction: column;
+    }
+    .shop-card-tag {
+      font-size: 0.59rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .shop-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 700;
+      color: var(--bark); line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .shop-card-latin {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-style: italic;
+      color: var(--muted); margin-bottom: 0.8rem;
+    }
+    .shop-card-desc {
+      font-size: 0.82rem; color: var(--bark-mid); line-height: 1.8;
+      flex: 1; margin-bottom: 1.4rem;
+    }
+    .shop-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1.2rem; border-top: 1px solid var(--sand);
+    }
+    .shop-card-price { font-size: 1rem; font-weight: 500; color: var(--bark); }
+    .shop-card-price small { font-size: 0.68rem; color: var(--muted); font-weight: 300; margin-left: 0.2rem; }
+    .shop-card-cta {
+      padding: 0.6rem 1.4rem;
+      background: var(--bark); color: var(--cream);
+      font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.25s;
+    }
+    .shop-card-cta:hover { background: var(--bark-mid); }
+
+    .shop-card-coming {
+      position: relative; filter: grayscale(50%); opacity: 0.75;
+      background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(0,0,0,0.02) 12px, rgba(0,0,0,0.02) 24px);
+    }
+    .shop-card-coming::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(141deg, transparent 48%, var(--muted) 48%, var(--muted) 52%, transparent 52%);
+      pointer-events: none; z-index: 1;
+    }
+    .shop-card-coming .shop-card-btn-disabled {
+      padding: 0.6rem 1.4rem;
+      background: var(--sand); color: var(--muted);
+      font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: default;
+    }
+    .shop-card-badge {
+      position: absolute; top: 1rem; right: 1rem; z-index: 2;
+      background: var(--bark); color: var(--cream);
+      font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.32rem 0.7rem;
+    }
+
+    .shop-info {
+      max-width: 1300px; margin: 0 auto; padding: 4rem 3.5rem;
+      background: var(--cream-mid);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .shop-info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--bark); margin-bottom: 0.6rem;
+    }
+    .shop-info-card p {
+      font-size: 0.88rem; color: var(--bark-mid); line-height: 1.85;
+    }
+
+    @media (max-width: 960px) {
+      .page-hero { padding: 4rem 1.5rem; }
+      .shop-grid-section { padding: 3rem 1.5rem; }
+      .shop-grid { grid-template-columns: 1fr; }
+      .shop-info { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow reveal">The Estate Store</p>
+      <h1 class="page-headline reveal reveal-delay-1">Mycelium,<br/><em>By the Grain</em></h1>
+      <p class="page-sub reveal reveal-delay-2">
+        From fresh clusters harvested at peak flush to lab-prepared grain spawn and
+        substrate kits — every product is grown, packed, and shipped from our Indiana
+        farm. No middlemen, no inventory warehouses.
+      </p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="shop-grid-section">
+    <div class="shop-grid">
+
+      <div class="shop-card reveal">
+        <span class="shop-card-tag">Fresh Harvest</span>
+        <h2 class="shop-card-title">Fresh Gourmet Oysters</h2>
+        <p class="shop-card-latin">Pleurotus ostreatus &amp; allies</p>
+        <p class="shop-card-desc">Harvested at peak flush and shipped same-day. Three estate-grown varieties — Black Pearl, Golden, and Blue Oyster — each with distinct flavor, texture, and character.</p>
+        <div class="shop-card-footer">
+          <span class="shop-card-price">From $12 <small>/ 8 oz</small></span>
+          <a class="shop-card-cta" href="fresh-harvest.html">Shop →</a>
+        </div>
+      </div>
+
+      <div class="shop-card shop-card-coming reveal reveal-delay-2">
+        <span class="shop-card-badge">Coming Soon</span>
+        <span class="shop-card-tag">Cultivation</span>
+        <h2 class="shop-card-title">Grain Spawn Bundles</h2>
+        <p class="shop-card-latin">Rye grain · sterile inoculation</p>
+        <p class="shop-card-desc">Lab-prepared rye grain spawn, fully colonized and tested on our own farm before release. Choose from Blue Oyster, Golden Oyster, Black Pearl, or mixed varieties. Ships with cold packs.</p>
+        <div class="shop-card-footer">
+          <span class="shop-card-price">From $18 <small>/ quart jar</small></span>
+          <span class="shop-card-btn-disabled">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="shop-card shop-card-coming reveal reveal-delay-3">
+        <span class="shop-card-badge">Coming Soon</span>
+        <span class="shop-card-tag">Substrate</span>
+        <h2 class="shop-card-title">Straw Block Kits</h2>
+        <p class="shop-card-latin">Pasteurized wheat straw</p>
+        <p class="shop-card-desc">Hydrated, pasteurized straw blocks ready to inoculate. Regenerative, low-waste, and optimized for oyster mushroom cultivation. 5 lb and 10 lb sizes. No synthetic inputs.</p>
+        <div class="shop-card-footer">
+          <span class="shop-card-price">From $24 <small>/ block</small></span>
+          <span class="shop-card-btn-disabled">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="shop-card shop-card-coming reveal">
+        <span class="shop-card-badge">Coming Soon</span>
+        <span class="shop-card-tag">Cultures</span>
+        <h2 class="shop-card-title">Liquid Cultures</h2>
+        <p class="shop-card-latin">Sterile mycelium suspensions</p>
+        <p class="shop-card-desc">Pure, microscope-verified liquid cultures in sterile media. Ideal for agar work, grain inoculation, and culture maintenance. Available in our full strain library.</p>
+        <div class="shop-card-footer">
+          <span class="shop-card-price">From $15 <small>/ 10 mL syringe</small></span>
+          <span class="shop-card-btn-disabled">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="shop-card shop-card-coming reveal reveal-delay-2">
+        <span class="shop-card-badge">Coming Soon</span>
+        <span class="shop-card-tag">Subscription</span>
+        <h2 class="shop-card-title">Weekly CSA Share</h2>
+        <p class="shop-card-latin">Seasonal rotating harvest</p>
+        <p class="shop-card-desc">A weekly selection of whatever peaked that flush — oyster varieties, seasonal specialties, and limited releases. Overnight shipping or Thursday morning pickup in Indiana.</p>
+        <div class="shop-card-footer">
+          <span class="shop-card-price">From $35 <small>/ week</small></span>
+          <span class="shop-card-btn-disabled">Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="shop-info">
+    <div class="shop-info-card reveal">
+      <h3>Shipping &amp; Fulfillment</h3>
+      <p>All orders are packed and shipped from our farm in Indiana. Fresh mushrooms ship overnight with cold packs. Grain spawn and cultures ship same-week. Local pickup available in Indiana — select at checkout.</p>
+    </div>
+    <div class="shop-info-card reveal reveal-delay-1">
+      <h3>Farm-Direct Quality</h3>
+      <p>Every product you buy passes through our lab and fruiting chambers before it reaches you. We don't warehouse inventory — we grow to order. That means what you receive is never more than a few days from harvest or preparation.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="grain-spawn.html">Grain Spawn</a></li>
+      <li><a href="substrate-kits.html">Substrate Kits</a></li>
+      <li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+      <li><a href="csa-share.html">CSA Share</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#our-methods">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+
+
+

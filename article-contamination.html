@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contamination Under the Microscope — Mycelial Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream: #FAF8F3; --cream-mid: #F0EDE4; --sand: #E4DDD0; --bark: #3A2A1A; --bark-mid: #6B5240; --muted: #9A8E80; --gold: #B8942A; --gold-light: #D4AA4A; --text: #2A1F14; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3.5rem; background: rgba(250,248,243,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--sand); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bark); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.71rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--bark); }
+
+    .article { padding-top: 72px; max-width: 720px; margin: 0 auto; padding-bottom: 5rem; }
+    .article-header { padding: 5rem 2rem 3rem; text-align: center; }
+    .article-tag { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1.05; color: var(--bark); margin-bottom: 0.8rem; }
+    .article-meta { font-size: 0.72rem; color: var(--muted); }
+    .article-body { padding: 0 2rem; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem; }
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--bark); margin-top: 2rem; margin-bottom: 0.6rem; }
+    .article-body p { font-size: 0.95rem; color: var(--bark-mid); line-height: 1.9; margin-bottom: 1.2rem; }
+    .article-body hr { border: none; border-top: 1px solid var(--sand); margin: 2rem 0; }
+    .article-body ul { margin: 1rem 0 1.5rem; padding-left: 1.5rem; }
+    .article-body ul li { font-size: 0.95rem; color: var(--bark-mid); line-height: 1.85; margin-bottom: 0.5rem; }
+    .article-back { display: inline-flex; align-items: center; gap: 0.5rem; margin: 2rem 2rem 0; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .article-back:hover { color: var(--gold); }
+
+    .article-img { width: 100%; border-radius: 4px; margin: 1.5rem 0; }
+    .article-img-caption { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-style: italic; }
+
+    .article-wrap { position: relative; }
+    .article-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='%234A7C59' opacity='0.15'%3E%3C!-- Bacillus rod --%3E%3Cellipse cx='30' cy='30' rx='14' ry='5' transform='rotate(-35 30 30)'/%3E%3Cpath d='M16 28 Q10 22 14 16' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M44 32 Q50 26 46 20' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='22' cy='24' r='1.5'/%3E%3Ccircle cx='38' cy='36' r='1.5'/%3E%3Ccircle cx='26' cy='38' r='1'/%3E%3Ccircle cx='34' cy='22' r='1'/%3E%3C!-- Coccus cluster --%3E%3Ccircle cx='90' cy='45' r='6'/%3E%3Ccircle cx='82' cy='40' r='5.5'/%3E%3Ccircle cx='96' cy='40' r='5'/%3E%3Ccircle cx='87' cy='54' r='4.5'/%3E%3Ccircle cx='75' cy='48' r='4'/%3E%3Cpath d='M75 48 Q68 42 72 36' stroke='%234A7C59' stroke-width='1.2' fill='none' opacity='0.5'/%3E%3Cpath d='M96 40 Q104 34 100 28' stroke='%234A7C59' stroke-width='1.2' fill='none' opacity='0.5'/%3E%3C!-- Spirillum --%3E%3Cpath d='M150 30 Q158 22 162 30 Q166 38 158 40 Q150 42 154 50' stroke='%234A7C59' stroke-width='3' fill='none' stroke-linecap='round' opacity='0.6'/%3E%3Cpath d='M146 28 Q140 22 144 16' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M156 52 Q162 58 158 64' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3C!-- Bacillus 2 --%3E%3Cellipse cx='50' cy='130' rx='12' ry='4.5' transform='rotate(25 50 130)'/%3E%3Cpath d='M38 126 Q32 120 36 114' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M62 134 Q68 128 64 122' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='42' cy='122' r='1.2'/%3E%3Ccircle cx='56' cy='136' r='1.2'/%3E%3C!-- Coccus pair --%3E%3Ccircle cx='150' cy='120' r='5'/%3E%3Ccircle cx='162' cy='120' r='5'/%3E%3Cpath d='M150 120 Q144 114 148 108' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M162 120 Q168 114 164 108' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='146' cy='116' r='1'/%3E%3Ccircle cx='166' cy='116' r='1'/%3E%3C!-- Bacillus 3 --%3E%3Cellipse cx='110' cy='170' rx='11' ry='4' transform='rotate(-20 110 170)'/%3E%3Cpath d='M98 168 Q92 162 96 156' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M122 172 Q128 166 124 160' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='104' cy='164' r='1'/%3E%3Ccircle cx='116' cy='176' r='1'/%3E%3C!-- Coccus single --%3E%3Ccircle cx='20' cy='170' r='5.5'/%3E%3Cpath d='M20 170 Q14 164 18 158' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M20 170 Q26 176 22 182' stroke='%234A7C59' stroke-width='1' fill='none' opacity='0.5'/%3E%3Ccircle cx='14' cy='166' r='1'/%3E%3Ccircle cx='26' cy='166' r='1'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+    .article-wrap > * { position: relative; z-index: 1; }
+
+    footer { padding: 5rem 3.5rem 3rem; background: var(--cream-mid); border-top: 1px solid var(--sand); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--bark); margin-bottom: 0.75rem; }
+    .footer-tagline { font-size: 0.81rem; color: var(--muted); line-height: 1.8; max-width: 28ch; }
+    .footer-col-title { font-size: 0.59rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links a { font-size: 0.81rem; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .footer-links a:hover { color: var(--bark); }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 2.5rem; border-top: 1px solid var(--sand); display: flex; justify-content: space-between; }
+    .footer-copy { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); }
+
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .article-header { padding: 4rem 1.5rem 2rem; }
+      .article-body { padding: 0 1.5rem; }
+      .article-back { margin: 1.5rem; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Mycelial Estate</a>
+  <ul class="nav-links">
+    <li><a href="index.html#oysters">Oysters</a></li>
+    <li><a href="coming-soon.html">Coming Soon</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+  </ul>
+</nav>
+
+<a class="article-back" href="journal.html">← Back to Journal</a>
+
+<div class="article-wrap">
+<article class="article">
+  <header class="article-header">
+    <p class="article-tag">Lab · Quality</p>
+    <h1 class="article-title">Contamination Under the Microscope</h1>
+    <p class="article-meta">May 2026 · 6 min read</p>
+  </header>
+  <div class="article-body">
+
+    <p>Every cultivator deals with contamination. It's not a question of <em>if</em>, but <em>when</em> — and how you respond determines whether you lose a jar, a batch, or a season. Over the past two years, we've logged every contamination event in our lab. This article is a visual guide to the most common contaminants we see, what they look like under the microscope, and our standard quarantine protocol.</p>
+
+    <img class="article-img" src="assets/images/Microscope.jpg" alt="Microscope view of mushroom contamination samples" loading="lazy" />
+    <p class="article-img-caption">Lab microscope setup used for contaminant identification and spore analysis.</p>
+
+    <hr />
+
+    <h2>Trichoderma (Green Mold)</h2>
+    <p>Trichoderma is the most common contaminant in mushroom cultivation — and the most destructive. It appears as a white mycelium that closely resembles mushroom mycelium in its early stages. Within 48–72 hours, it develops a distinctive green spore mass that spreads rapidly through the substrate.</p>
+    <p><strong>Under the microscope:</strong> Conidiophores branch in a characteristic pyramidal pattern. Conidia (spores) are round, smooth, and bright green. Hyphae are thin (2–4 µm) and highly branched.</p>
+    <p><strong>Response:</strong> Isolate immediately. Do not open contaminated bags or jars in the lab. Dispose in sealed bags — Trichoderma spores remain viable for months and are easily airborne.</p>
+
+    <h2>Aspergillus</h2>
+    <p>Aspergillus appears as a powdery mold that ranges from yellow-green to dark brown depending on the species. It's particularly common in grain spawn that was over-hydrated or improperly sterilized. Unlike Trichoderma, Aspergillus prefers dryer conditions and lower water activity.</p>
+    <p><strong>Under the microscope:</strong> Conidiophores are long, upright, and terminate in a swollen vesicle covered in phialides. Conidia form in chains radiating from the vesicle. The overall structure resembles a dandelion head.</p>
+    <p><strong>Response:</strong> Aspergillus spores can be allergenic and, in some species, produce mycotoxins. Wear a mask when handling. Dispose immediately and review grain hydration protocol.</p>
+
+    <h2>Bacillus (Wet Spot / Sour Rot)</h2>
+    <p>Bacillus contamination appears as a glossy, wet-looking patch on grain that has a sour, fermenting smell. The grain turns a dark brown or reddish color, and the texture becomes slimy. It's caused by endospore-forming bacteria that survive incomplete sterilization.</p>
+    <p><strong>Under the microscope:</strong> Rod-shaped cells (3–5 µm), often in chains. Endospores appear as bright, oval refractile bodies within the cells when viewed under phase contrast. Gram-positive.</p>
+    <p><strong>Response:</strong> This is a sterilization failure, not a handling error. Review autoclave cycle times, pressure, and grain moisture content. Jars with Bacillus should be autoclaved before disposal to kill endospores.</p>
+
+    <h2>Pin Mold (Mucor / Rhizopus)</h2>
+    <p>Pin mold appears as a fuzzy gray or white growth that rapidly develops tiny black pinhead-like structures. It grows incredibly fast — often covering the surface of a jar or agar plate within 24–48 hours.</p>
+    <p><strong>Under the microscope:</strong> Broad, non-septate hyphae (6–15 µm wide). Sporangiophores grow upright and terminate in a round sporangium filled with spores. Rhizopus shows characteristic rhizoids at the base of the sporangiophores.</p>
+    <p><strong>Response:</strong> Pin mold is usually the result of airborne spores landing on exposed grain or agar during inoculation. Review sterile technique — particularly the use of flow hoods and benchtop surface sterilization.</p>
+
+    <hr />
+
+    <h2>Our Quarantine Protocol</h2>
+    <p>When contamination is detected at any stage, we follow a strict quarantine process to protect the rest of the lab:</p>
+    <ul>
+      <li><strong>Identify.</strong> Note the date, strain, substrate lot, and shelf position. Photograph through the bag or jar. If safe, sample for microscopy.</li>
+      <li><strong>Isolate.</strong> Move the contaminated item to our quarantine container — a sealed plastic tote with a HEPA filter vent, kept in a separate room.</li>
+      <li><strong>Investigate.</strong> Check adjacent jars or bags for early signs of the same contaminant. Review the production log for that batch.</li>
+      <li><strong>Dispose.</strong> Autoclave the contaminated item before discarding. Never open a contaminated jar or bag inside the lab area.</li>
+      <li><strong>Correct.</strong> Based on the contaminant identification, adjust the relevant process — sterilization cycle, grain hydration, pasteurization temperature, or sterile technique.</li>
+    </ul>
+
+    <hr />
+
+    <h2>Prevention Is Everything</h2>
+    <p>The best contamination protocol is one you never have to use. In our lab, we focus on three areas: master culture quality (starting from clean cultures reduces the contamination chain), sterilization verification (we use biological indicators — Geobacillus stearothermophilus spore strips — in every autoclave run), and environmental monitoring (settle plates placed around the lab to track airborne spore loads week over week).</p>
+    <p>Contamination is a learning tool, not a failure. Every event teaches us something about our process. Keep a log, take photos, and share what you find.</p>
+
+  </div>
+</article>
+</div>
+
+<footer>
+  <div>
+    <p class="footer-brand">Mycelial Estate</p>
+    <p class="footer-tagline">Boutique gourmet fungi laboratory and farm. Grown in Indiana. Shipped nationwide.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Shop</p>
+    <ul class="footer-links">
+      <li><a href="fresh-harvest.html">Fresh Harvest</a></li>
+      <li><a href="grain-spawn.html">Grain Spawn</a></li>
+      <li><a href="substrate-kits.html">Substrate Kits</a></li>
+      <li><a href="liquid-cultures.html">Liquid Cultures</a></li>
+      <li><a href="csa-share.html">CSA Share</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html#oysters">Oyster Varieties</a></li>
+      <li><a href="coming-soon.html">Coming Soon</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="our-methods.html">Our Methods</a></li>
+      <li><a href="about.html">About</a></li>
+    <li><a href="cart.html" class="cart-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-count">0</span></a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Account</p>
+    <ul class="footer-links">
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Mycelial Estate. All rights reserved.</p>
+    <p class="footer-copy">Indiana · Sustainably Grown</p>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+
+
+
